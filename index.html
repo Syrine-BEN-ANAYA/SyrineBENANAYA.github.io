@@ -24,6 +24,7 @@
             --radius: 8px;
             --success: #4CAF50;
             --warning: #FFC107;
+            --hero-gradient: linear-gradient(135deg, rgba(93, 95, 239, 0.08) 0%, rgba(255, 255, 255, 0) 100%);
         }
 
         body {
@@ -65,15 +66,25 @@
             height: 8px;
             background-color: rgba(93, 95, 239, 0.2);
             z-index: -1;
+            border-radius: 4px;
         }
 
         /* Header Styles */
+        .navbar {
+            transition: background-color 0.4s ease, box-shadow 0.4s ease;
+        }
+
         .navbar-brand {
             font-size: 1.8rem;
             font-weight: 700;
             color: var(--primary);
             display: flex;
             align-items: center;
+            transition: transform 0.3s ease;
+        }
+
+        .navbar-brand:hover {
+            transform: scale(1.05);
         }
 
         .navbar-brand span {
@@ -87,10 +98,12 @@
             position: relative;
             padding: 0.5rem 1rem;
             transition: var(--transition);
+            border-radius: 30px;
         }
 
         .navbar-nav .nav-link:hover {
             color: var(--primary);
+            background-color: rgba(93, 95, 239, 0.05);
         }
 
         .navbar-nav .nav-link::after {
@@ -120,12 +133,21 @@
         .navbar-toggler {
             border: none;
             font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .navbar-toggler:focus {
+            box-shadow: none;
+        }
+
+        .navbar-toggler:hover {
+            transform: rotate(90deg);
         }
 
         /* Hero Section */
         .hero {
             padding: 180px 0 100px;
-            background: linear-gradient(135deg, rgba(93, 95, 239, 0.1) 0%, rgba(255, 255, 255, 0) 100%);
+            background: var(--hero-gradient);
             position: relative;
             overflow: hidden;
         }
@@ -138,8 +160,9 @@
             width: 400px;
             height: 400px;
             border-radius: 50%;
-            background: linear-gradient(135deg, rgba(93, 95, 239, 0.1) 0%, rgba(255, 255, 255, 0) 100%);
+            background: var(--hero-gradient);
             z-index: -1;
+            animation: rotate 20s linear infinite;
         }
 
         .hero-content {
@@ -150,24 +173,32 @@
             font-size: 3.5rem;
             line-height: 1.2;
             margin-bottom: 20px;
+            animation: fadeInUp 1s ease-out;
         }
 
         .hero-text p {
             font-size: 1.2rem;
             margin-bottom: 30px;
             color: var(--gray);
+            animation: fadeInUp 1s ease-out 0.2s forwards;
+            opacity: 0;
         }
 
         .highlight {
             color: var(--primary);
             position: relative;
             font-weight: 800;
+            background: linear-gradient(120deg, rgba(93, 95, 239, 0.1), rgba(93, 95, 239, 0));
+            padding: 0 8px;
+            border-radius: 4px;
         }
 
         .hero-btns {
             display: flex;
             gap: 15px;
             flex-wrap: wrap;
+            animation: fadeInUp 1s ease-out 0.4s forwards;
+            opacity: 0;
         }
 
         .btn-custom {
@@ -183,6 +214,23 @@
             border: none;
             font-size: 1rem;
             box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-custom::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .btn-custom:hover::after {
+            left: 100%;
         }
 
         .btn-primary-custom {
@@ -215,6 +263,8 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            animation: fadeIn 1s ease-out 0.6s forwards;
+            opacity: 0;
         }
 
         .profile-img {
@@ -226,18 +276,26 @@
             box-shadow: 0 15px 35px rgba(93, 95, 239, 0.3);
             border: 5px solid white;
             animation: float 6s ease-in-out infinite;
+            transition: transform 0.5s ease;
+        }
+
+        .profile-img:hover {
+            transform: scale(1.03);
         }
 
         .profile-img img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .profile-img:hover img {
+            transform: scale(1.05);
         }
 
         .hero-shape {
             position: absolute;
-            width: 120px;
-            height: 120px;
             border-radius: 30px;
             background: var(--primary);
             transform: rotate(45deg);
@@ -249,6 +307,8 @@
         .shape-1 {
             top: 20%;
             left: 15%;
+            width: 120px;
+            height: 120px;
         }
 
         .shape-2 {
@@ -269,6 +329,13 @@
             height: 100%;
             position: relative;
             overflow: hidden;
+            transform: translateY(30px);
+            opacity: 0;
+        }
+
+        .skill-card.animate {
+            transform: translateY(0);
+            opacity: 1;
         }
 
         .skill-card:hover {
@@ -302,6 +369,7 @@
 
         .skill-card:hover .skill-icon {
             transform: scale(1.1);
+            color: var(--secondary);
         }
 
         /* Projects Section */
@@ -324,7 +392,6 @@
             z-index: 0;
         }
 
-        /* Nouveau style pour le défilement horizontal */
         .projects-scroll-container {
             position: relative;
             padding-bottom: 30px;
@@ -366,10 +433,18 @@
             position: relative;
             z-index: 1;
             scroll-snap-align: start;
+            transform: scale(0.95);
+            opacity: 0.9;
+        }
+
+        .project-card.active {
+            transform: scale(1);
+            opacity: 1;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
         }
 
         .project-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-10px) scale(1.02);
             box-shadow: 0 15px 30px rgba(0,0,0,0.15);
         }
 
@@ -418,17 +493,19 @@
             background: white;
             color: var(--primary);
             border: none;
-            padding: 10px 20px;
+            padding: 12px 25px;
             border-radius: 30px;
             font-weight: 600;
             cursor: pointer;
             transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
         .project-overlay-btn:hover {
             background: var(--primary);
             color: white;
             transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
         }
 
         .project-info {
@@ -460,6 +537,7 @@
         .tech-tag:hover {
             background-color: var(--primary);
             color: white;
+            transform: translateY(-2px);
         }
 
         .project-links {
@@ -475,11 +553,26 @@
             align-items: center;
             gap: 5px;
             transition: var(--transition);
+            position: relative;
+        }
+
+        .project-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
         }
 
         .project-link:hover {
             color: var(--primary-dark);
-            transform: translateY(-2px);
+        }
+
+        .project-link:hover::after {
+            width: 100%;
         }
 
         /* Navigation horizontale */
@@ -498,11 +591,29 @@
             border: none;
             cursor: pointer;
             transition: var(--transition);
+            position: relative;
+        }
+
+        .project-nav-btn::after {
+            content: '';
+            position: absolute;
+            top: -4px;
+            left: -4px;
+            right: -4px;
+            bottom: -4px;
+            border-radius: 50%;
+            border: 1px solid var(--primary);
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
         .project-nav-btn.active {
             background-color: var(--primary);
             transform: scale(1.2);
+        }
+
+        .project-nav-btn.active::after {
+            opacity: 0.5;
         }
 
         /* Contact Section */
@@ -515,6 +626,13 @@
             height: 100%;
             position: relative;
             overflow: hidden;
+            transform: translateX(-20px);
+            opacity: 0;
+        }
+
+        .contact-card.animate {
+            transform: translateX(0);
+            opacity: 1;
         }
 
         .contact-card::after {
@@ -533,6 +651,11 @@
             display: flex;
             align-items: center;
             margin-bottom: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateX(5px);
         }
 
         .contact-icon {
@@ -547,6 +670,13 @@
             color: var(--primary);
             font-size: 1.2rem;
             flex-shrink: 0;
+            transition: var(--transition);
+        }
+
+        .contact-item:hover .contact-icon {
+            background-color: var(--primary);
+            color: white;
+            transform: rotate(10deg);
         }
 
         .contact-form {
@@ -555,10 +685,17 @@
             padding: 40px;
             box-shadow: var(--shadow);
             height: 100%;
+            transform: translateX(20px);
+            opacity: 0;
+        }
+
+        .contact-form.animate {
+            transform: translateX(0);
+            opacity: 1;
         }
 
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             position: relative;
         }
 
@@ -567,6 +704,7 @@
             padding: 12px 15px;
             border-radius: var(--radius);
             transition: var(--transition);
+            background-color: transparent;
         }
 
         .form-control:focus {
@@ -585,6 +723,13 @@
             color: var(--primary);
             font-weight: 500;
             transition: var(--transition);
+            transform-origin: left;
+        }
+
+        .form-control:focus + .form-label,
+        .form-control:not(:placeholder-shown) + .form-label {
+            transform: translateY(-20px) scale(0.9);
+            color: var(--primary-dark);
         }
 
         /* Footer */
@@ -643,11 +788,26 @@
             text-decoration: none;
             transition: var(--transition);
             display: inline-block;
+            position: relative;
+        }
+
+        .footer-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
         }
 
         .footer-links a:hover {
             color: var(--primary);
-            transform: translateX(5px);
+        }
+
+        .footer-links a:hover::after {
+            width: 100%;
         }
 
         .social-links {
@@ -667,6 +827,23 @@
             color: white;
             text-decoration: none;
             transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-link::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .social-link:hover::after {
+            left: 100%;
         }
 
         .social-link:hover {
@@ -697,6 +874,27 @@
             100% { transform: rotate(45deg) scale(1); }
         }
 
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from { 
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         /* Back to top button */
         .back-to-top {
             position: fixed;
@@ -717,6 +915,7 @@
             transition: var(--transition);
             box-shadow: 0 5px 15px rgba(93, 95, 239, 0.3);
             z-index: 1000;
+            border: none;
         }
 
         .back-to-top.show {
@@ -745,6 +944,79 @@
             background: linear-gradient(90deg, var(--primary), var(--secondary));
             width: 0%;
             transition: width 0.2s ease-out;
+        }
+
+        /* Theme Switch */
+        .theme-switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+            margin-left: 15px;
+        }
+
+        .theme-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: var(--primary);
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+
+        .slider i {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 14px;
+            color: white;
+        }
+
+        .slider .moon {
+            left: 8px;
+            opacity: 0;
+        }
+
+        .slider .sun {
+            right: 8px;
+            opacity: 1;
+        }
+
+        input:checked + .slider .moon {
+            opacity: 1;
+        }
+
+        input:checked + .slider .sun {
+            opacity: 0;
         }
 
         /* Responsive Design */
@@ -820,6 +1092,10 @@
             .projects-wrapper {
                 gap: 20px;
             }
+
+            .navbar-nav {
+                padding-top: 15px;
+            }
         }
     </style>
 </head>
@@ -856,6 +1132,13 @@
                         <a class="nav-link" href="#contact">Contact</a>
                     </li>
                 </ul>
+                <label class="theme-switch ms-3" for="themeToggle">
+                    <input type="checkbox" id="themeToggle">
+                    <span class="slider round">
+                        <i class="fas fa-moon moon"></i>
+                        <i class="fas fa-sun sun"></i>
+                    </span>
+                </label>
             </div>
         </div>
     </nav>
@@ -909,7 +1192,7 @@
                             <i class="fas fa-server"></i>
                         </div>
                         <h3>Backend Development</h3>
-                        <p>Node.js, Nest.js, Angular, Symfony,MongoDB, RESTful APIs, authentication, database design, server deployment.</p>
+                        <p>Node.js, Nest.js, Angular, Symfony, MongoDB, RESTful APIs, authentication, database design, server deployment.</p>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-3">
@@ -919,7 +1202,7 @@
                         </div>
                      <h3>Android, iOS</h3>
 
-                        <p>Mobile-first approach, CSS Grid,Kotlin, Flutter.</p>
+                        <p>Mobile-first approach, CSS Grid, Kotlin, Flutter.</p>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-3">
@@ -943,7 +1226,7 @@
             </div>
             <div class="projects-scroll-container">
                 <div class="projects-wrapper" id="projectsWrapper">
-                    <div class="project-card">
+                    <div class="project-card active">
                         <div class="project-img">
                             <img src="event1.png" alt="eventManager">
                             <div class="project-overlay">
@@ -1008,7 +1291,7 @@
                     </div>
                     <div class="project-card">
                         <div class="project-img">
-                            <img src="ecom.webp" alt="Project 4">
+                            <img src="https://images.unsplash.com/photo-1607082350899-7e105aa886ae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80" alt="Project 4">
                             <div class="project-overlay">
                                 <a href="ecom.html" class="project-overlay-btn">View Details</a>
                             </div>
@@ -1029,7 +1312,7 @@
                     </div>
                     <div class="project-card">
                         <div class="project-img">
-                            <img src="management.png" alt="Project 5">
+                            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80" alt="Project 5">
                             <div class="project-overlay">
                                 <a href="management.html" class="project-overlay-btn">View Details</a>
                             </div>
@@ -1050,7 +1333,7 @@
                     </div>
                     <div class="project-card">
                         <div class="project-img">
-                            <img src="erp.jpg" alt="Project 6">
+                            <img src="https://images.unsplash.com/photo-1543286386-713bdd548da4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80" alt="Project 6">
                             <div class="project-overlay">
                                 <a href="erp.html" class="project-overlay-btn">View Details</a>
                             </div>
@@ -1126,19 +1409,19 @@
                     <div class="contact-form">
                         <form id="contactForm">
                             <div class="form-group">
-                                <input type="text" class="form-control" id="name" required>
+                                <input type="text" class="form-control" id="name" placeholder=" " required>
                                 <label for="name" class="form-label">Full Name</label>
                             </div>
                             <div class="form-group">
-                                <input type="email" class="form-control" id="email" required>
+                                <input type="email" class="form-control" id="email" placeholder=" " required>
                                 <label for="email" class="form-label">Email Address</label>
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control" id="subject" required>
+                                <input type="text" class="form-control" id="subject" placeholder=" " required>
                                 <label for="subject" class="form-label">Subject</label>
                             </div>
                             <div class="form-group">
-                                <textarea class="form-control" id="message" rows="5" required></textarea>
+                                <textarea class="form-control" id="message" rows="5" placeholder=" " required></textarea>
                                 <label for="message" class="form-label">Message</label>
                             </div>
                             <button type="submit" class="btn btn-primary-custom btn-custom w-100">Send Message</button>
@@ -1179,7 +1462,7 @@
                     <div class="footer-links">
                         <h4>Resources</h4>
                         <ul>
-                            <li><a href="assets/cv1.pdf" target="_blank" rel="noopener">My Resume</a></li>
+                            <li><a href="cv1.pdf" target="_blank" rel="noopener">My Resume</a></li>
                             <li><a href="https://github.com/Syrine-BEN-ANAYA">GitHub Profile</a></li>
                         </ul>
                     </div>
@@ -1256,8 +1539,10 @@
             const navbar = document.querySelector('.navbar');
             if (window.scrollY > 50) {
                 navbar.classList.add('shadow-sm');
+                navbar.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
             } else {
                 navbar.classList.remove('shadow-sm');
+                navbar.style.backgroundColor = '';
             }
         });
 
@@ -1316,11 +1601,13 @@
         const projectCards = document.querySelectorAll('.project-card');
         projectCards.forEach(card => {
             card.addEventListener('mouseenter', () => {
-                card.style.transform = 'translateY(-10px)';
+                card.style.transform = 'translateY(-10px) scale(1.02)';
             });
             
             card.addEventListener('mouseleave', () => {
-                card.style.transform = 'translateY(0)';
+                if (!card.classList.contains('active')) {
+                    card.style.transform = 'scale(0.95)';
+                }
             });
         });
 
@@ -1328,13 +1615,12 @@
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('show');
+                    entry.target.classList.add('animate');
                 }
             });
-        }, { threshold: 0.1 });
+        }, { threshold: 0.15 });
 
-        document.querySelectorAll('.skill-card, .project-card').forEach(el => {
-            el.classList.add('hidden');
+        document.querySelectorAll('.skill-card, .contact-card, .contact-form').forEach(el => {
             observer.observe(el);
         });
         
@@ -1384,6 +1670,15 @@
                     btn.classList.remove('active');
                 }
             });
+            
+            // Mettre à jour la classe active des cartes
+            projectCardsArray.forEach((card, index) => {
+                if (index === activeIndex) {
+                    card.classList.add('active');
+                } else {
+                    card.classList.remove('active');
+                }
+            });
         });
         
         // Navigation au clavier
@@ -1400,6 +1695,38 @@
                 if (nextBtn) nextBtn.click();
             }
         });
+
+        // Theme toggle
+        const themeToggle = document.getElementById('themeToggle');
+        themeToggle.addEventListener('change', () => {
+            document.body.classList.toggle('dark-theme');
+        });
+
+        // Animation for form labels
+        document.querySelectorAll('.form-control').forEach(input => {
+            input.addEventListener('input', function() {
+                const label = this.nextElementSibling;
+                if (this.value) {
+                    label.style.transform = 'translateY(-20px) scale(0.9)';
+                    label.style.color = 'var(--primary-dark)';
+                } else {
+                    label.style.transform = '';
+                    label.style.color = '';
+                }
+            });
+        });
+
+        // Initial animations
+        setTimeout(() => {
+            document.querySelectorAll('.skill-card').forEach((card, index) => {
+                setTimeout(() => {
+                    card.classList.add('animate');
+                }, index * 150);
+            });
+            
+            document.querySelector('.contact-card').classList.add('animate');
+            document.querySelector('.contact-form').classList.add('animate');
+        }, 500);
     </script>
 </body>
 </html>
