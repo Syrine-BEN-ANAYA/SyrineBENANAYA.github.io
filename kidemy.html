@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Galerie Projet - Event Manager</title>
+  <title>Kidemy Project Gallery</title>
   <link
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     rel="stylesheet"
@@ -91,6 +91,8 @@
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
       transition: all 0.3s ease;
       background: white;
+      display: flex;
+      flex-direction: column;
     }
 
     .gallery-item:hover {
@@ -98,10 +100,22 @@
       box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
     }
 
-    .gallery-img {
+    /* Fixed aspect ratio container for images */
+    .image-container {
       width: 100%;
-      height: 220px;
-      object-fit: cover;
+      height: 0;
+      padding-top: 75%; /* 4:3 aspect ratio (change to 56.25% for 16:9) */
+      position: relative;
+      overflow: hidden;
+    }
+
+    .gallery-img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover; /* Maintains aspect ratio and fills container */
       display: block;
       transition: transform 0.5s ease;
     }
@@ -112,6 +126,9 @@
 
     .gallery-info {
       padding: 20px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
     }
 
     .gallery-title {
@@ -125,6 +142,7 @@
       color: #7f8c8d;
       font-size: 0.95rem;
       line-height: 1.5;
+      flex-grow: 1;
     }
 
     /* Navigation */
@@ -229,10 +247,6 @@
         width: 280px;
       }
       
-      .gallery-img {
-        height: 200px;
-      }
-      
       .nav-btn {
         width: 45px;
         height: 45px;
@@ -247,47 +261,70 @@
       .gallery-item {
         width: 260px;
       }
-      
-      .gallery-img {
-        height: 180px;
-      }
     }
   </style>
 </head>
 <body>
   <div class="container">
     <header>
-      <h1> Projet Gallery - Event Manager</h1>
-      <p class="subtitle">Discover the key features of our event management application through these screenshots.
-</p>
+      <h1>Projet Gallery - Kidemy</h1>
+<p class="subtitle">Discover the main features of the Kidemy application through these screenshots.</p>
     </header>
     
     <div class="gallery-container">
       <div class="gallery-scroll" id="galleryScroll">
         <div class="gallery-item">
-          <img src="event1.png" alt="Tableau de bord" class="gallery-img">
+          <div class="image-container">
+            <img src="kid2.png" alt="Interface de connexion" class="gallery-img">
+          </div>
           <div class="gallery-info">
-            <h3 class="gallery-title">Event Manager</h3>
-            <p class="gallery-desc">Overview of all your events, statistics, and important notifications.</p>
+<h3 class="gallery-title">Login Interface</h3>
+<p class="gallery-desc">A clean and user-friendly login screen with fields for email and password, a password visibility toggle, and navigation links for account creation and password recovery.</p>
+
+
           </div>
         </div>
         
         <div class="gallery-item">
-          <img src="event2.png" alt="Création d'événement" class="gallery-img">
+          <div class="image-container">
+            <img src="kid3.png" alt="Interface d'inscription" class="gallery-img">
+          </div>
           <div class="gallery-info">
-            <h3 class="gallery-title">Event creation</h3>
-            <p class="gallery-desc">An intuitive interface to create new events in just a few clicks.</p>
+<h3 class="gallery-title">Sign-Up Interface</h3>
+<p class="gallery-desc">An intuitive registration screen that allows new users to create an account by entering essential details such as their name, email, password, and more.</p>
           </div>
         </div>
         
         <div class="gallery-item">
-          <img src="event3.png" alt="Gestion des invitations" class="gallery-img">
+          <div class="image-container">
+            <img src="kid4.png" alt="Interface des leçons" class="gallery-img">
+          </div>
           <div class="gallery-info">
-            <h3 class="gallery-title">Add organizer</h3>
-            <p class="gallery-desc"> An interface to add a  new organizer in just a few clicks.</p>
+<h3 class="gallery-title">Lessons Interface</h3>
+<p class="gallery-desc">A visual representation of what the lessons interface might look like in Kidemy.</p>
           </div>
         </div>
         
+        <div class="gallery-item">
+          <div class="image-container">
+            <img src="kid5.png" alt="Autre visualisation" class="gallery-img">
+          </div>
+          <div class="gallery-info">
+<h3 class="gallery-title">Other Visualization</h3>
+<p class="gallery-desc">Additional visuals of the application showcasing different features.</p>
+          </div>
+        </div>
+        
+        <div class="gallery-item">
+          <div class="image-container">
+            <img src="kid6.png" alt="Erreur de connexion" class="gallery-img">
+          </div>
+          <div class="gallery-info">
+<h3 class="gallery-title">Error Handling</h3>
+<p class="gallery-desc">Interface showing how Kidemy handles errors and situations requiring user action.</p>
+          </div>
+        </div>
+      </div>
       
       <div class="scroll-nav">
         <button class="nav-btn" id="scrollLeft">
@@ -308,7 +345,7 @@
     </div>
     
     <div class="back-link">
-      <a href="index.html"><i class="fas fa-arrow-left"></i> Back to home</a>
+<a href="index.html"><i class="fas fa-arrow-left"></i> Back to Home</a>
     </div>
   </div>
 

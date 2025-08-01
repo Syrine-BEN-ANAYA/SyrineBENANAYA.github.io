@@ -348,12 +348,14 @@
             font-size: 3rem;
             position: relative;
             overflow: hidden;
+            background-color: white; /* Ajouté pour un fond uni */
         }
 
+        /* CORRECTION PRINCIPALE - object-fit: contain au lieu de cover */
         .project-img img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain; /* Changé de cover à contain */
             transition: var(--transition);
         }
 
@@ -763,7 +765,7 @@
     <!-- Header with Bootstrap Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm py-3">
         <div class="container">
-            <a class="navbar-brand" href="#"><span>S.B A</span></a>
+            <a class="navbar-brand" href="#"><span>Syrine.B A</span></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <i class="fas fa-bars"></i>
             </button>
@@ -805,7 +807,7 @@
                 <div class="col-lg-6">
                     <div class="profile-img-container">
                         <div class="profile-img">
-<img src="image1.jpg" alt="Syrine BEN ANAYA">
+                            <img src="Image1.jpg" alt="Syrine BEN ANAYA">
                         </div>
                     </div>
                 </div>
@@ -871,14 +873,14 @@
                 <div class="col-md-6 col-lg-4">
                     <div class="project-card">
                         <div class="project-img">
-                            <img src="assets/event1.png" alt="eventManager">
+                            <img src="event1.png" alt="eventManager">
                             <div class="project-overlay">
-<a href="event.html" class="project-overlay-btn">View Details</a>
+                                <a href="event.html" class="project-overlay-btn">View Details</a>
                             </div>
                         </div>
                         <div class="project-info">
                             <h3>eventManager App</h3>
-                            <p>A full-featured online event management system that allows organizers to create and manage events, add participants, and streamline event operations with built-in tools for scheduling, communication, and coordination.</p>
+                            <p>A full-featured online event management system that allows organizers to create and manage events, add participants, and streamline event operations.</p>
                             <div class="project-tech">
                                 <span class="tech-tag">JSP</span>
                                 <span class="tech-tag">Servlets</span>
@@ -898,22 +900,20 @@
                 <div class="col-md-6 col-lg-4">
                     <div class="project-card">
                         <div class="project-img">
-                            <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=300&q=80" alt="Movie Discovery App">
+                            <img src="kid1.png" alt="kidemy_interface">
                             <div class="project-overlay">
-                                <button class="project-overlay-btn">View Details</button>
+                                <a href="kidemy.html" class="project-overlay-btn">View Details</a>
                             </div>
                         </div>
                         <div class="project-info">
-                            <h3>Movie Discovery App</h3>
-                            <p>Browse and search movies with filters, watch trailers, and save favorites to your account.</p>
+                            <h3>Kidemy App</h3>
+                            <p>Kidemy is a fun and easy-to-use learning app designed especially for learners from 5 to 15 years old. It offers exciting lessons, games, and activities to help pupils explore new skills.</p>
                             <div class="project-tech">
-                                <span class="tech-tag">Vue.js</span>
-                                <span class="tech-tag">Vuex</span>
-                                <span class="tech-tag">TMDB API</span>
+                                <span class="tech-tag">Flutter</span>
                                 <span class="tech-tag">Firebase</span>
                             </div>
                             <div class="project-links">
-                                <a href="#" class="project-link"><i class="fab fa-github"></i> Code</a>
+                                <a href="https://github.com/Syrine-BEN-ANAYA/Kidemy.git" class="project-link"><i class="fab fa-github"></i> Code</a>
                                 <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
                             </div>
                         </div>
@@ -922,23 +922,20 @@
                 <div class="col-md-6 col-lg-4">
                     <div class="project-card">
                         <div class="project-img">
-                            <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=300&q=80" alt="Real-time Chat Application">
+                            <img src="menu.png" alt="menu_app">
                             <div class="project-overlay">
-                                <button class="project-overlay-btn">View Details</button>
+                                <a href="menu.html" class="project-overlay-btn">View Details</a>
                             </div>
                         </div>
                         <div class="project-info">
-                            <h3>Real-time Chat Application</h3>
-                            <p>A messaging platform with real-time updates, group chats, and message history.</p>
+                            <h3>e-Menu</h3>
+                            <p>The e-Menu app is a digital restaurant menu system developed using Java for Android devices. It allows restaurants to replace traditional paper menus with an interactive, user-friendly mobile application. The app enables customers to browse menu categories, view detailed item descriptions with images and prices, customize orders.</p>
                             <div class="project-tech">
-                                <span class="tech-tag">Socket.io</span>
-                                <span class="tech-tag">Express</span>
-                                <span class="tech-tag">React</span>
-                                <span class="tech-tag">JWT</span>
+                                <span class="tech-tag">java</span>
                             </div>
                             <div class="project-links">
-                                <a href="#" class="project-link"><i class="fab fa-github"></i> Code</a>
-                                <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                                <a href="https://github.com/Syrine-BEN-ANAYA/e-Menu.git" class="project-link"><i class="fab fa-github"></i> Code</a>
+                                <a href="" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
                             </div>
                         </div>
                     </div>

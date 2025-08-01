@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Galerie Projet - Event Manager</title>
+  <title>e-Menu - Project Gallery</title>
   <link
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     rel="stylesheet"
@@ -98,9 +98,14 @@
       box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
     }
 
+    .gallery-img-container {
+      height: 220px;
+      overflow: hidden;
+    }
+
     .gallery-img {
       width: 100%;
-      height: 220px;
+      height: 100%;
       object-fit: cover;
       display: block;
       transition: transform 0.5s ease;
@@ -125,6 +130,7 @@
       color: #7f8c8d;
       font-size: 0.95rem;
       line-height: 1.5;
+      min-height: 72px;
     }
 
     /* Navigation */
@@ -229,7 +235,7 @@
         width: 280px;
       }
       
-      .gallery-img {
+      .gallery-img-container {
         height: 200px;
       }
       
@@ -248,46 +254,83 @@
         width: 260px;
       }
       
-      .gallery-img {
+      .gallery-img-container {
         height: 180px;
       }
+    }
+    
+    /* Placeholder images */
+    .placeholder {
+      background: linear-gradient(135deg, #3498db, #2ecc71);
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.5rem;
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
   <div class="container">
     <header>
-      <h1> Projet Gallery - Event Manager</h1>
-      <p class="subtitle">Discover the key features of our event management application through these screenshots.
-</p>
+      <h1>Project Gallery - e-Menu</h1>
+      <p class="subtitle">Discover the key features of e-Menu application through these screenshots.</p>
     </header>
     
     <div class="gallery-container">
       <div class="gallery-scroll" id="galleryScroll">
         <div class="gallery-item">
-          <img src="event1.png" alt="Tableau de bord" class="gallery-img">
+          <div class="gallery-img-container">
+            <img src="menu1.png" alt="Event Manager" class="gallery-img">
+          </div>
           <div class="gallery-info">
-            <h3 class="gallery-title">Event Manager</h3>
-            <p class="gallery-desc">Overview of all your events, statistics, and important notifications.</p>
+            <h3 class="gallery-title">Profil</h3>
+            <p class="gallery-desc">Overview of profil features.</p>
           </div>
         </div>
         
         <div class="gallery-item">
-          <img src="event2.png" alt="Création d'événement" class="gallery-img">
+          <div class="gallery-img-container">
+            <img src="menu2.png" alt="Event creation" class="gallery-img">
+          </div>
           <div class="gallery-info">
-            <h3 class="gallery-title">Event creation</h3>
-            <p class="gallery-desc">An intuitive interface to create new events in just a few clicks.</p>
+            <h3 class="gallery-title">First interface</h3>
+            <p class="gallery-desc">An intuitive interface navigate screens through few clicks.</p>
           </div>
         </div>
         
         <div class="gallery-item">
-          <img src="event3.png" alt="Gestion des invitations" class="gallery-img">
+          <div class="gallery-img-container">
+            <img src="menu3.png" alt="Add organizer" class="gallery-img">
+          </div>
           <div class="gallery-info">
-            <h3 class="gallery-title">Add organizer</h3>
-            <p class="gallery-desc"> An interface to add a  new organizer in just a few clicks.</p>
+            <h3 class="gallery-title">Menu</h3>
+            <p class="gallery-desc">An interface to choose a menu  in just a few clicks.</p>
           </div>
         </div>
         
+        <div class="gallery-item">
+          <div class="gallery-img-container">
+            <img src="menu4.png" alt="Menu customization" class="gallery-img">
+          </div>
+          <div class="gallery-info">
+            <h3 class="gallery-title">Registration screen</h3>
+            <p class="gallery-desc">Easily create an account.</p>
+          </div>
+        </div>
+        
+        <div class="gallery-item">
+          <div class="gallery-img-container">
+            <img src="menu5.png" alt="Guest management" class="gallery-img">
+          </div>
+          <div class="gallery-info">
+            <h3 class="gallery-title">Other </h3>
+            <p class="gallery-desc">More visuals.</p>
+          </div>
+        </div>
+      </div>
       
       <div class="scroll-nav">
         <button class="nav-btn" id="scrollLeft">
