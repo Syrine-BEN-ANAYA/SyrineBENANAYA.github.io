@@ -309,6 +309,7 @@
             background-color: #f5f7ff;
             position: relative;
             overflow: hidden;
+            padding: 80px 0;
         }
 
         .projects::before {
@@ -323,15 +324,48 @@
             z-index: 0;
         }
 
+        /* Nouveau style pour le défilement horizontal */
+        .projects-scroll-container {
+            position: relative;
+            padding-bottom: 30px;
+        }
+
+        .projects-wrapper {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            gap: 30px;
+            padding: 20px 10px 40px;
+            scrollbar-width: thin;
+            scrollbar-color: var(--primary) rgba(0,0,0,0.1);
+            -ms-overflow-style: none;
+        }
+
+        .projects-wrapper::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .projects-wrapper::-webkit-scrollbar-track {
+            background: rgba(0,0,0,0.05);
+            border-radius: 10px;
+        }
+
+        .projects-wrapper::-webkit-scrollbar-thumb {
+            background-color: var(--primary);
+            border-radius: 10px;
+        }
+
         .project-card {
+            flex: 0 0 auto;
+            width: 330px;
             background-color: white;
             border-radius: var(--radius);
             overflow: hidden;
             box-shadow: var(--shadow);
             transition: var(--transition);
-            height: 100%;
             position: relative;
             z-index: 1;
+            scroll-snap-align: start;
         }
 
         .project-card:hover {
@@ -348,14 +382,13 @@
             font-size: 3rem;
             position: relative;
             overflow: hidden;
-            background-color: white; /* Ajouté pour un fond uni */
+            background-color: white;
         }
 
-        /* CORRECTION PRINCIPALE - object-fit: contain au lieu de cover */
         .project-img img {
             width: 100%;
             height: 100%;
-            object-fit: contain; /* Changé de cover à contain */
+            object-fit: contain;
             transition: var(--transition);
         }
 
@@ -447,6 +480,29 @@
         .project-link:hover {
             color: var(--primary-dark);
             transform: translateY(-2px);
+        }
+
+        /* Navigation horizontale */
+        .projects-nav {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .project-nav-btn {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(93, 95, 239, 0.3);
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .project-nav-btn.active {
+            background-color: var(--primary);
+            transform: scale(1.2);
         }
 
         /* Contact Section */
@@ -705,6 +761,10 @@
                 width: 280px;
                 height: 280px;
             }
+            
+            .project-card {
+                width: 300px;
+            }
         }
 
         @media (max-width: 768px) {
@@ -733,6 +793,10 @@
             .contact-form {
                 padding: 25px;
             }
+            
+            .project-card {
+                width: 280px;
+            }
         }
 
         @media (max-width: 576px) {
@@ -747,6 +811,14 @@
             .profile-img {
                 width: 220px;
                 height: 220px;
+            }
+            
+            .project-card {
+                width: 260px;
+            }
+            
+            .projects-wrapper {
+                gap: 20px;
             }
         }
     </style>
@@ -864,13 +936,13 @@
     </section>
 
     <!-- Projects Section -->
-    <section class="projects section-padding" id="projects">
+    <section class="projects" id="projects">
         <div class="container">
             <div class="section-title">
                 <h2>My Projects</h2>
             </div>
-            <div class="row g-4">
-                <div class="col-md-6 col-lg-4">
+            <div class="projects-scroll-container">
+                <div class="projects-wrapper" id="projectsWrapper">
                     <div class="project-card">
                         <div class="project-img">
                             <img src="event1.png" alt="eventManager">
@@ -892,12 +964,9 @@
                             <div class="project-links">
                                 <a href="https://github.com/Syrine-BEN-ANAYA/eventManager.git" class="project-link"><i class="fab fa-github"></i> Code</a>
                                 <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
-                                
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-6 col-lg-4">
                     <div class="project-card">
                         <div class="project-img">
                             <img src="kid1.png" alt="kidemy_interface">
@@ -918,8 +987,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-6 col-lg-4">
                     <div class="project-card">
                         <div class="project-img">
                             <img src="menu.png" alt="menu_app">
@@ -929,7 +996,7 @@
                         </div>
                         <div class="project-info">
                             <h3>e-Menu</h3>
-                            <p>The e-Menu app is a digital restaurant menu system developed using Java for Android devices. It allows restaurants to replace traditional paper menus with an interactive, user-friendly mobile application. The app enables customers to browse menu categories, view detailed item descriptions with images and prices, customize orders.</p>
+                            <p>The e-Menu app is a digital restaurant menu system developed using Java for Android devices. It allows restaurants to replace traditional paper menus with an interactive, user-friendly mobile application.</p>
                             <div class="project-tech">
                                 <span class="tech-tag">java</span>
                             </div>
@@ -939,6 +1006,72 @@
                             </div>
                         </div>
                     </div>
+                    <div class="project-card">
+                        <div class="project-img">
+                            <img src="ecom.webp" alt="Project 4">
+                            <div class="project-overlay">
+                                <a href="ecom.html" class="project-overlay-btn">View Details</a>
+                            </div>
+                        </div>
+                        <div class="project-info">
+                            <h3>E-commerce Platform</h3>
+                            <p>A complete e-commerce solution with product management, shopping cart, payment processing, and user accounts.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">React</span>
+                                <span class="tech-tag">Node.js</span>
+                                <span class="tech-tag">MongoDB</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" class="project-link"><i class="fab fa-github"></i> Code</a>
+                                <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-img">
+                            <img src="management.png" alt="Project 5">
+                            <div class="project-overlay">
+                                <a href="management.html" class="project-overlay-btn">View Details</a>
+                            </div>
+                        </div>
+                        <div class="project-info">
+                            <h3>Task Management System</h3>
+                            <p>A Kanban-style task management application with drag-and-drop functionality and team collaboration features.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Angular</span>
+                                <span class="tech-tag">Firebase</span>
+                                <span class="tech-tag">Material UI</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" class="project-link"><i class="fab fa-github"></i> Code</a>
+                                <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-img">
+                            <img src="erp.jpg" alt="Project 6">
+                            <div class="project-overlay">
+                                <a href="erp.html" class="project-overlay-btn">View Details</a>
+                            </div>
+                        </div>
+                        <div class="project-info">
+                            <h3>Mini ERP</h3>
+                            <p>A powerful all-in-one platform that integrates your business processes—finance, inventory, sales, HR, and more—into a single system.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Spring Boot</span>
+                                <span class="tech-tag">React</span>
+                                <span class="tech-tag"> PostgreSQL</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" class="project-link"><i class="fab fa-github"></i> Code</a>
+                                <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="projects-nav" id="projectsNav">
+                    <!-- Les boutons de navigation seront générés dynamiquement en JS -->
                 </div>
             </div>
         </div>
@@ -1203,6 +1336,69 @@
         document.querySelectorAll('.skill-card, .project-card').forEach(el => {
             el.classList.add('hidden');
             observer.observe(el);
+        });
+        
+        // Gestion du défilement horizontal des projets
+        const projectsWrapper = document.getElementById('projectsWrapper');
+        const projectsNav = document.getElementById('projectsNav');
+        const projectCardsArray = Array.from(document.querySelectorAll('.project-card'));
+        
+        // Création des boutons de navigation
+        projectCardsArray.forEach((_, index) => {
+            const btn = document.createElement('button');
+            btn.className = 'project-nav-btn';
+            btn.dataset.index = index;
+            if (index === 0) btn.classList.add('active');
+            
+            btn.addEventListener('click', () => {
+                // Mise à jour de la classe active
+                document.querySelectorAll('.project-nav-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                btn.classList.add('active');
+                
+                // Défilement vers le projet correspondant
+                const projectCard = projectCardsArray[index];
+                projectsWrapper.scrollTo({
+                    left: projectCard.offsetLeft - 20,
+                    behavior: 'smooth'
+                });
+            });
+            
+            projectsNav.appendChild(btn);
+        });
+        
+        // Mise à jour du bouton actif pendant le défilement
+        projectsWrapper.addEventListener('scroll', () => {
+            const scrollPosition = projectsWrapper.scrollLeft;
+            const cardWidth = projectCardsArray[0].offsetWidth + 30; // largeur + gap
+            
+            // Calculer l'index de la carte la plus visible
+            const activeIndex = Math.round(scrollPosition / cardWidth);
+            
+            // Mettre à jour le bouton actif
+            document.querySelectorAll('.project-nav-btn').forEach((btn, index) => {
+                if (index === activeIndex) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+        });
+        
+        // Navigation au clavier
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') {
+                // Trouver le bouton actif précédent
+                const activeBtn = document.querySelector('.project-nav-btn.active');
+                const prevBtn = activeBtn.previousElementSibling;
+                if (prevBtn) prevBtn.click();
+            } else if (e.key === 'ArrowRight') {
+                // Trouver le bouton actif suivant
+                const activeBtn = document.querySelector('.project-nav-btn.active');
+                const nextBtn = activeBtn.nextElementSibling;
+                if (nextBtn) nextBtn.click();
+            }
         });
     </script>
 </body>
